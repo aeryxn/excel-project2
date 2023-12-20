@@ -3,6 +3,8 @@ import "./App.css";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
+let status = 'unknown'
+
 function App() {
   const [excelData, setExcelData] = useState(null);
   const [extractedData1, setExtractedData1] = useState(null);
@@ -67,7 +69,9 @@ function App() {
           dataArray,
         });
       }
+      let status = 'DONE';
     } catch (error) {
+      let status = 'FAILED';
       console.error("Error submitting form data to the server", error);
     }
   };
