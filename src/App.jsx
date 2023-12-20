@@ -3,8 +3,6 @@ import "./App.css";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
-let status = 'unknown'
-
 function App() {
   const [excelData, setExcelData] = useState(null);
   const [extractedData1, setExtractedData1] = useState(null);
@@ -65,13 +63,13 @@ function App() {
     try {
       // Loop through each array in extractedData1 and send it to the server
       for (const dataArray of extractedData1) {
-        const response = await axios.post("http://localhost:3009/api/insert", {
+        const response = await axios.post("http://192.168.1.49:3009/api/insert", {
           dataArray,
         });
       }
-      let status = 'DONE';
+      
     } catch (error) {
-      let status = 'FAILED';
+      
       console.error("Error submitting form data to the server", error);
     }
   };
@@ -106,7 +104,7 @@ function App() {
             <button className="dbButton" onClick={sendData}>
               Send To Database
             </button>
-            <p className="successMessage">{status}</p>
+            {/* <p className="successMessage">{status}</p> */}
           </div>
         )}
       </div>
